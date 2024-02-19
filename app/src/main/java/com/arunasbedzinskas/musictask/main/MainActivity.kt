@@ -10,14 +10,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.createGraph
-import com.arunasbedzinskas.musictask.R
 import com.arunasbedzinskas.musictask.SCREEN_CATEGORY
 import com.arunasbedzinskas.musictask.SCREEN_HOME
 import com.arunasbedzinskas.musictask.SCREEN_STORAGE
@@ -25,6 +25,8 @@ import com.arunasbedzinskas.musictask.ui.screen.CategoryScreen
 import com.arunasbedzinskas.musictask.ui.screen.HomeScreen
 import com.arunasbedzinskas.musictask.ui.screen.StorageScreen
 import com.arunasbedzinskas.musictask.ui.theme.AppTheme
+import com.arunasbedzinskas.musictask.viewmodel.MainViewModel
+import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
 
@@ -35,7 +37,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun Main() {
+private fun Main(mainViewModel: MainViewModel = koinViewModel()) {
     val navController = rememberNavController()
     val navGraph = navController.createGraph(SCREEN_HOME) {
         composable(SCREEN_HOME) { HomeScreen() }
@@ -43,8 +45,10 @@ private fun Main() {
         composable(SCREEN_STORAGE) { StorageScreen() }
     }
 
+    val topBarTitle by mainViewModel.topBarStateFlow.collectAsState()
+
     Scaffold(
-        topBar = { TopBar() },
+        topBar = { TopBar(topBarTitle) },
         content = { paddingValues ->
             NavHost(
                 navController = navController,
@@ -57,12 +61,14 @@ private fun Main() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun TopBar(title: String = stringResource(R.string.app_name)) {
+private fun TopBar(title: String) {
+    if (title.isEmpty()) return
+
     TopAppBar(
         title = {
             Text(
                 text = title,
-                style = MaterialTheme.typography.labelLarge
+                style = MaterialTheme.typography.headlineMedium
             )
         }
     )

@@ -2,14 +2,14 @@ package com.arunasbedzinskas.musictask.dataaccess
 
 import android.content.Context
 import androidx.annotation.WorkerThread
-import com.arunasbedzinskas.musictask.data.Genre
+import com.arunasbedzinskas.musictask.models.data.GenreDataModel
+import com.arunasbedzinskas.musictask.models.data.GenresWithSongsDataModel
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
 
 fun interface GenresWithSongsDataAccess {
 
-    suspend fun getGenresWithSongs(): List<Genre>
+    suspend fun getGenresWithSongs(): List<GenreDataModel>
 
 }
 
@@ -18,17 +18,10 @@ internal class GenresWithSongsDataAccessImpl(
     private val gson: Gson
 ) : GenresWithSongsDataAccess {
 
-    private var genres: List<Genre> = listOf()
-
     @WorkerThread
-    override suspend fun getGenresWithSongs(): List<Genre> {
-        if (genres.isEmpty()) {
-            fetchGenresWithSongs()
-        }
-        return genres
-    }
+    override suspend fun getGenresWithSongs(): List<GenreDataModel> = fetchGenresWithSongs()
 
-    private fun fetchGenresWithSongs() {
+    private fun fetchGenresWithSongs(): List<GenreDataModel> {
         val jsonString = buildString {
             appContext.assets
                 .open("genres_and_songs.json")
@@ -37,8 +30,6 @@ internal class GenresWithSongsDataAccessImpl(
                     lines.forEach { append(it) }
                 }
         }
-
-        val listType = object : TypeToken<List<Genre>>() {}.type
-        genres = gson.fromJson(jsonString, listType)
+        return gson.fromJson(jsonString, GenresWithSongsDataModel::class.java).genres
     }
 }

@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">MusicTask</string>
+    <string name="app_name">Music Storage</string>
+
+    <string name="button_see_all">See All</string>
+
+    <string name="home_section_storage">Storage</string>
 </resources>

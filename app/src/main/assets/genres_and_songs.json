@@ -1,0 +1,176 @@
+{
+  "genres": [
+    {
+      "id": 0,
+      "name": "Metal",
+      "songs": [
+        {
+          "id": 0,
+          "name": "Deutschland",
+          "artist": "Rammstein",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/f/fd/RammsteinDeutschlandSingleCover.jpg/220px-RammsteinDeutschlandSingleCover.jpg",
+          "size": 1000000,
+          "length": 322
+        },
+        {
+          "id": 1,
+          "name": "Zeit",
+          "artist": "Rammstein",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/a/ab/Rammstein_-_Zeit.png",
+          "size": 2000000,
+          "length": 321
+        },
+        {
+          "id": 2,
+          "name": "Adieu",
+          "artist": "Rammstein",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/a/ab/Rammstein_-_Zeit.png",
+          "size": 1000000,
+          "length": 279
+        },
+        {
+          "id": 3,
+          "name": "The Red Baron",
+          "artist": "Sabaton",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/48/Sabaton_-_The_Great_War.jpg",
+          "size": 2000000,
+          "length": 202
+        },
+        {
+          "id": 4,
+          "name": "82nd All the Way",
+          "artist": "Sabaton",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/48/Sabaton_-_The_Great_War.jpg",
+          "size": 1000000,
+          "length": 211
+        },
+        {
+          "id": 5,
+          "name": "Sparta",
+          "artist": "Sabaton",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/Sabaton_-_The_Last_Stand_cover.jpg/220px-Sabaton_-_The_Last_Stand_cover.jpg",
+          "size": 2000000,
+          "length": 264
+        },
+        {
+          "id": 6,
+          "name": "Hill 3234",
+          "artist": "Sabaton",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/Sabaton_-_The_Last_Stand_cover.jpg/220px-Sabaton_-_The_Last_Stand_cover.jpg",
+          "size": 1000000,
+          "length": 209
+        },
+        {
+          "id": 7,
+          "name": "Shiroyama",
+          "artist": "Sabaton",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/Sabaton_-_The_Last_Stand_cover.jpg/220px-Sabaton_-_The_Last_Stand_cover.jpg",
+          "size": 2000000,
+          "length": 211
+        },
+        {
+          "id": 8,
+          "name": "Gods of War",
+          "artist": "Manowar",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/7d/Gods-of-war-Cover.JPG",
+          "size": 1000000,
+          "length": 446
+        },
+        {
+          "id": 9,
+          "name": "Odin",
+          "artist": "Manowar",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/7d/Gods-of-war-Cover.JPG",
+          "size": 2000000,
+          "length": 327
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Rock",
+      "songs": [
+        {
+          "id": 10,
+          "name": "Highway to Hell",
+          "artist": "AC/DC",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/a/ac/Acdc_Highway_to_Hell.JPG/220px-Acdc_Highway_to_Hell.JPG",
+          "size": 1000000,
+          "length": 209
+        },
+        {
+          "id": 11,
+          "name": "If You Want Blood (You've Got It)",
+          "artist": "AC/DC",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/a/ac/Acdc_Highway_to_Hell.JPG/220px-Acdc_Highway_to_Hell.JPG",
+          "size": 2000000,
+          "length": 278
+        },
+        {
+          "id": 12,
+          "name": "Hells Bells",
+          "artist": "AC/DC",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/ACDC_Back_in_Black_cover.svg/220px-ACDC_Back_in_Black_cover.svg.png",
+          "size": 1000000,
+          "length": 310
+        },
+        {
+          "id": 13,
+          "name": "Shoot to Thrill",
+          "artist": "AC/DC",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/ACDC_Back_in_Black_cover.svg/220px-ACDC_Back_in_Black_cover.svg.png",
+          "size": 2000000,
+          "length": 317
+        },
+        {
+          "id": 14,
+          "name": "Back in Black",
+          "artist": "AC/DC",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/ACDC_Back_in_Black_cover.svg/220px-ACDC_Back_in_Black_cover.svg.png",
+          "size": 1000000,
+          "length": 255
+        },
+        {
+          "id": 15,
+          "name": "Rock and Roll Ain't Noise Pollution",
+          "artist": "AC/DC",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/ACDC_Back_in_Black_cover.svg/220px-ACDC_Back_in_Black_cover.svg.png",
+          "size": 2000000,
+          "length": 255
+        },
+        {
+          "id": 16,
+          "name": "You Shook Me All Night Long",
+          "artist": "AC/DC",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/ACDC_Back_in_Black_cover.svg/220px-ACDC_Back_in_Black_cover.svg.png",
+          "size": 1000000,
+          "length": 210
+        },
+        {
+          "id": 17,
+          "name": "T.N.T.",
+          "artist": "AC/DC",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/ACDC-TNT.jpg/220px-ACDC-TNT.jpg",
+          "size": 2000000,
+          "length": 215
+        },
+        {
+          "id": 18,
+          "name": "High Voltage",
+          "artist": "AC/DC",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/ACDC-TNT.jpg/220px-ACDC-TNT.jpg",
+          "size": 1000000,
+          "length": 260
+        },
+        {
+          "id": 19,
+          "name": "The Jack",
+          "artist": "AC/DC",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/ACDC-TNT.jpg/220px-ACDC-TNT.jpg",
+          "size": 2000000,
+          "length": 353
+        }
+      ]
+    }
+  ]
+}

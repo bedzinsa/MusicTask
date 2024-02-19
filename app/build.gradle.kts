@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
     implementation(libs.gson)
+    implementation(libs.coil)
 
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)

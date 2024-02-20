@@ -7,12 +7,15 @@ import com.arunasbedzinskas.musictask.database.Database
 import com.arunasbedzinskas.musictask.database.Database.Companion.DB_NAME
 import com.arunasbedzinskas.musictask.database.dao.SongDao
 import com.arunasbedzinskas.musictask.dispatchers.AppDispatchers
-import com.arunasbedzinskas.musictask.usecase.GetGenresWith5SongsUseCase
-import com.arunasbedzinskas.musictask.usecase.GetGenresWith5SongsUseCaseImpl
-import com.arunasbedzinskas.musictask.usecase.GetGenresWithSongsUseCase
-import com.arunasbedzinskas.musictask.usecase.GetGenresWithSongsUseCaseImpl
+import com.arunasbedzinskas.musictask.usecase.GetAllGenresUseCase
+import com.arunasbedzinskas.musictask.usecase.GetAllGenresUseCaseImpl
+import com.arunasbedzinskas.musictask.usecase.GetGenreUseCase
+import com.arunasbedzinskas.musictask.usecase.GetGenreUseCaseImpl
+import com.arunasbedzinskas.musictask.usecase.GetLimitGenresUseCase
+import com.arunasbedzinskas.musictask.usecase.GetLimitGenresUseCaseImpl
 import com.arunasbedzinskas.musictask.usecase.GetStorageTypesDataUseCase
 import com.arunasbedzinskas.musictask.usecase.GetStorageTypesDataUseCaseImpl
+import com.arunasbedzinskas.musictask.viewmodel.GenreViewModel
 import com.arunasbedzinskas.musictask.viewmodel.HomeViewModel
 import com.arunasbedzinskas.musictask.viewmodel.MainViewModel
 import com.google.gson.GsonBuilder
@@ -45,6 +48,7 @@ object Koin {
     private fun viewModelsModule() = module {
         viewModel { MainViewModel() }
         viewModel { HomeViewModel(get(), get(), get()) }
+        viewModel { (genreId: Int) -> GenreViewModel(genreId, get(), get()) }
     }
 
     private fun dataAccessModule() = module {
@@ -52,8 +56,9 @@ object Koin {
     }
 
     private fun useCaseModule() = module {
-        factory<GetGenresWithSongsUseCase> { GetGenresWithSongsUseCaseImpl(get(), get()) }
-        factory<GetGenresWith5SongsUseCase> { GetGenresWith5SongsUseCaseImpl(get()) }
+        factory<GetAllGenresUseCase> { GetAllGenresUseCaseImpl(get(), get()) }
+        factory<GetLimitGenresUseCase> { GetLimitGenresUseCaseImpl(get()) }
+        factory<GetGenreUseCase> { GetGenreUseCaseImpl(get()) }
 
         factory<GetStorageTypesDataUseCase> { GetStorageTypesDataUseCaseImpl() }
     }

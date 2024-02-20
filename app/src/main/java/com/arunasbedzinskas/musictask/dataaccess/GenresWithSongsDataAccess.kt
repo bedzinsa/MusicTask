@@ -18,10 +18,17 @@ internal class GenresWithSongsDataAccessImpl(
     private val gson: Gson
 ) : GenresWithSongsDataAccess {
 
-    @WorkerThread
-    override suspend fun getGenresWithSongs(): List<GenreDataModel> = fetchGenresWithSongs()
+    private var genres: List<GenreDataModel> = listOf()
 
-    private fun fetchGenresWithSongs(): List<GenreDataModel> {
+    @WorkerThread
+    override suspend fun getGenresWithSongs(): List<GenreDataModel> {
+        if (genres.isEmpty()) {
+            fetchGenresWithSongs()
+        }
+        return genres
+    }
+
+    private fun fetchGenresWithSongs() {
         val jsonString = buildString {
             appContext.assets
                 .open("genres_and_songs.json")
@@ -30,6 +37,7 @@ internal class GenresWithSongsDataAccessImpl(
                     lines.forEach { append(it) }
                 }
         }
-        return gson.fromJson(jsonString, GenresWithSongsDataModel::class.java).genres
+
+        genres = gson.fromJson(jsonString, GenresWithSongsDataModel::class.java).genres
     }
 }

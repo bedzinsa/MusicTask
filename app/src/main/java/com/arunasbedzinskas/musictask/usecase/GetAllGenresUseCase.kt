@@ -11,15 +11,15 @@ import com.arunasbedzinskas.musictask.models.ui.GenreUIModel
 import com.arunasbedzinskas.musictask.models.ui.SongUIModel
 import java.time.Duration
 
-fun interface GetGenresWithSongsUseCase {
+fun interface GetAllGenresUseCase {
 
     suspend operator fun invoke(): List<GenreUIModel>
 }
 
-internal class GetGenresWithSongsUseCaseImpl(
+internal class GetAllGenresUseCaseImpl(
     private val appContext: Context,
     private val dataAccess: GenresWithSongsDataAccess
-) : GetGenresWithSongsUseCase {
+) : GetAllGenresUseCase {
 
     @WorkerThread
     override suspend fun invoke(): List<GenreUIModel> = dataAccess.getGenresWithSongs()

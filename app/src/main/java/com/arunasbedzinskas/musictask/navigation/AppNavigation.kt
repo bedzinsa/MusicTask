@@ -2,12 +2,14 @@ package com.arunasbedzinskas.musictask.navigation
 
 import android.os.Bundle
 import androidx.compose.runtime.MutableState
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.createGraph
 import androidx.navigation.navArgument
 import com.arunasbedzinskas.musictask.EMPTY_STRING
+import com.arunasbedzinskas.musictask.R
 import com.arunasbedzinskas.musictask.models.enums.StorageType
 import com.arunasbedzinskas.musictask.ui.screen.GenreScreen
 import com.arunasbedzinskas.musictask.ui.screen.HomeScreen
@@ -35,7 +37,7 @@ object AppNavigation {
     ) = navController.createGraph(Route.Home) {
 
         composable(Route.Home) {
-            topBarTitleState.value = EMPTY_STRING
+            topBarTitleState.value = stringResource(R.string.app_name)
 
             HomeScreen(
                 onSeeAllClick = { genre ->

@@ -27,11 +27,15 @@ import androidx.navigation.createGraph
 import androidx.navigation.navArgument
 import com.arunasbedzinskas.musictask.ARGS_GENRE_ID
 import com.arunasbedzinskas.musictask.ARGS_GENRE_NAME
+import com.arunasbedzinskas.musictask.ARGS_STORAGE_TYPE
 import com.arunasbedzinskas.musictask.EMPTY_STRING
 import com.arunasbedzinskas.musictask.ROUTE_GENRE
 import com.arunasbedzinskas.musictask.ROUTE_HOME
+import com.arunasbedzinskas.musictask.ROUTE_STORAGE
+import com.arunasbedzinskas.musictask.models.enums.StorageType
 import com.arunasbedzinskas.musictask.ui.screen.GenreScreen
 import com.arunasbedzinskas.musictask.ui.screen.HomeScreen
+import com.arunasbedzinskas.musictask.ui.screen.StorageScreen
 import com.arunasbedzinskas.musictask.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
@@ -54,7 +58,9 @@ private fun Main() {
                 onSeeAllClick = { genre ->
                     navController.navigate("genre?genreId=${genre.id}&genreName=${genre.name}")
                 },
-                onStorageTypeClick = {}
+                onStorageTypeClick = { storageType ->
+                    navController.navigate("storage?storageTypeId=${storageType.ordinal}")
+                }
             )
         }
         composable(
@@ -66,6 +72,15 @@ private fun Main() {
                 GenreScreen(args.getInt(ARGS_GENRE_ID))
             }
         )
+        composable(
+            route = ROUTE_STORAGE,
+            arguments = listOf(navArgument(ARGS_STORAGE_TYPE) { type = NavType.IntType })
+        ) {
+            val args = it.arguments ?: Bundle()
+            val storageType = StorageType.entries[args.getInt(ARGS_STORAGE_TYPE, 0)]
+            topBarTitle = storageType.name
+            StorageScreen(storageType)
+        }
     }
 
     Scaffold(
@@ -86,7 +101,7 @@ private fun TopBar(title: String) {
     AnimatedVisibility(
         visible = title.isNotBlank(),
         enter = slideInVertically { -it },
-        exit = slideOutVertically{ -it }
+        exit = slideOutVertically { -it }
     ) {
         TopAppBar(
             title = {

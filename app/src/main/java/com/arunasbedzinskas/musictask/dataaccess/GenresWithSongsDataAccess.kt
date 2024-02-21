@@ -4,12 +4,15 @@ import android.content.Context
 import androidx.annotation.WorkerThread
 import com.arunasbedzinskas.musictask.models.data.GenreDataModel
 import com.arunasbedzinskas.musictask.models.data.GenresWithSongsDataModel
+import com.arunasbedzinskas.musictask.models.data.SongDataModel
 import com.google.gson.Gson
 
 
-fun interface GenresWithSongsDataAccess {
+interface GenresWithSongsDataAccess {
 
     suspend fun getGenresWithSongs(): List<GenreDataModel>
+
+    suspend fun getAllSongs(): List<SongDataModel>
 
 }
 
@@ -22,13 +25,18 @@ internal class GenresWithSongsDataAccessImpl(
 
     @WorkerThread
     override suspend fun getGenresWithSongs(): List<GenreDataModel> {
-        if (genres.isEmpty()) {
-            fetchGenresWithSongs()
-        }
+        fetchGenresWithSongs()
         return genres
     }
 
+    @WorkerThread
+    override suspend fun getAllSongs(): List<SongDataModel> {
+        fetchGenresWithSongs()
+        return genres.flatMap { genre -> genre.songs.map { it } }
+    }
+
     private fun fetchGenresWithSongs() {
+        if (genres.isNotEmpty()) return
         val jsonString = buildString {
             appContext.assets
                 .open("genres_and_songs.json")

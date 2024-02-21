@@ -11,6 +11,9 @@ import com.arunasbedzinskas.musictask.usecase.GetStorageTypesDataUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -45,9 +48,12 @@ class HomeViewModel(
 
     private fun fetchStorageTypesData() {
         viewModelScope.launch {
-            _storageTypesFlow.value = withContext(dispatchers.io) {
-                UiState.NormalState(getStorageTypesDataUseCase())
-            }
+            getStorageTypesDataUseCase()
+                .flowOn(dispatchers.io)
+                .onEach {
+                    _storageTypesFlow.value = UiState.NormalState(it)
+                }
+                .collect()
         }
     }
 }

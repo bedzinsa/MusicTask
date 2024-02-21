@@ -8,6 +8,6 @@ data class Song(
     @PrimaryKey(autoGenerate = true) val songId: Long,
     val name: String,
     val artist: String,
-    val size: Int, // in KB
-    val length: Int // in Seconds
+    val size: String, // KB, MB
+    val length: String // mins, secs
 )

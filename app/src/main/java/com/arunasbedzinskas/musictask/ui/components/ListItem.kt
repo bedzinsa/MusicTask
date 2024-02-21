@@ -24,7 +24,8 @@ fun MultiLineListItem(
     modifier: Modifier = Modifier,
     endIconButtonPainter: Painter? = null,
     endIconButtonContentDesc: String? = null,
-    onIconButtonClick: (() -> Unit)? = null
+    onIconButtonClick: (() -> Unit)? = null,
+    endIconButtonClickEnabled: Boolean = true,
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
         Row(
@@ -49,7 +50,10 @@ fun MultiLineListItem(
             }
 
             endIconButtonPainter?.let {
-                IconButton(onClick = { onIconButtonClick?.invoke() }) {
+                IconButton(
+                    onClick = { onIconButtonClick?.invoke() },
+                    enabled = endIconButtonClickEnabled
+                ) {
                     Icon(
                         painter = endIconButtonPainter,
                         contentDescription = endIconButtonContentDesc

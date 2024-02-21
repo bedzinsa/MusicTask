@@ -6,5 +6,6 @@ class SongUIModel(
     val artist: String,
     val imageUrl: String,
     val size: String,
-    val length: String
+    val length: String,
+    val isSaved: Boolean = false
 )

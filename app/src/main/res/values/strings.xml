@@ -4,4 +4,8 @@
     <string name="button_see_all">See All</string>
 
     <string name="home_section_storage">Storage</string>
+
+    <string name="content_description_home_storage_type_icon">Can click to open more information about songs being stored in device</string>
+    <string name="content_description_storage_song_saved">Non - clickable icon identifies that the song is saved in the device</string>
+    <string name="content_description_storage_song_non_saved">Click to save the song in the device</string>
 </resources>

@@ -138,6 +138,7 @@ private fun SongSection(song: SongUIModel) {
         Modifier
             .width(140.dp)
             .height(220.dp)
+            .semantics(mergeDescendants = true) {  }
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
             AsyncImage(
@@ -200,7 +201,7 @@ fun StorageType(
         )
         Icon(
             painter = rememberVectorPainter(Icons.AutoMirrored.Filled.KeyboardArrowRight),
-            contentDescription = null, // FIXME
+            contentDescription = stringResource(R.string.content_description_home_storage_type_icon),
         )
     }
     HorizontalDivider()

@@ -19,14 +19,14 @@ internal class MapSongUIUseCaseImpl(private val appContext: Context) : MapSongUI
 
     override fun invoke(
         songDataModel: SongDataModel,
-        isSaved: Boolean
+        isSaved: Boolean,
     ): SongUIModel = SongUIModel(
-            id = songDataModel.id,
-            name = songDataModel.name,
-            artist = songDataModel.artist,
-            imageUrl = songDataModel.imageUrl,
-            size = Formatter.formatShortFileSize(appContext, songDataModel.size),
-            length = Duration.ofSeconds(songDataModel.length).toTrackLength(),
-            isSaved = isSaved
-        )
+        id = songDataModel.id,
+        name = songDataModel.name,
+        artist = songDataModel.artist,
+        imageUrl = songDataModel.imageUrl,
+        size = Formatter.formatShortFileSize(appContext, songDataModel.size),
+        length = Duration.ofSeconds(songDataModel.length).toTrackLength(),
+        isSaved = isSaved
+    )
 }

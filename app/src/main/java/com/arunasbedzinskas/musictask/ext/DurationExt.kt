@@ -1,5 +1,6 @@
 package com.arunasbedzinskas.musictask.ext
 
+import com.arunasbedzinskas.musictask.DURATION_EMPTY
 import com.arunasbedzinskas.musictask.DURATION_HOURS
 import com.arunasbedzinskas.musictask.DURATION_MIN
 import com.arunasbedzinskas.musictask.DURATION_SEC
@@ -23,4 +24,7 @@ fun Duration.toTrackLength() = buildString {
         append(DURATION_SEC)
     }
 
+    if (isBlank()) {
+        append(DURATION_EMPTY)
+    }
 }.trim()

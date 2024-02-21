@@ -1,7 +1,7 @@
 package com.arunasbedzinskas.musictask.usecase
 
 import com.arunasbedzinskas.musictask.dataaccess.GenresWithSongsDataAccess
-import com.arunasbedzinskas.musictask.datastore.MusicDataStore
+import com.arunasbedzinskas.musictask.datastore.SongDataStore
 
 fun interface SaveSongToDataStoreUseCase {
 
@@ -10,11 +10,11 @@ fun interface SaveSongToDataStoreUseCase {
 
 internal class SaveSongToDataStoreUseCaseImpl(
     private val dataAccess: GenresWithSongsDataAccess,
-    private val musicDataStore: MusicDataStore
+    private val songDataStore: SongDataStore
 ) : SaveSongToDataStoreUseCase {
 
     override suspend fun invoke(songId: Int) {
         val songDataModel = dataAccess.getAllSongs().first { it.id == songId }
-        musicDataStore.addSong(songDataModel)
+        songDataStore.addSong(songDataModel)
     }
 }

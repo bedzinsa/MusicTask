@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 // TODO needs testing
-class MusicDataStore(
+class SongDataStore(
     private val appContext: Context,
     private val gson: Gson
 ) {

@@ -54,11 +54,13 @@ android {
 dependencies {
 
     implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
     annotationProcessor(libs.room.compiler)
     ksp(libs.room.compiler)
 
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.lifecycle.process)
     implementation(libs.activity.compose)
     implementation(libs.gson)
     implementation(libs.coil)
@@ -70,6 +72,7 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.navigation.compose)
     implementation(libs.dataStore)
+    implementation(libs.workKtx)
 
     implementation(libs.koin.compose)
 

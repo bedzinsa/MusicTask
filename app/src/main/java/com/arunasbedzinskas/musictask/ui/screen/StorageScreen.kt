@@ -25,19 +25,17 @@ fun StorageScreen(
     LazyColumn {
         items(songs.size) { index ->
             val song = songs[index]
-            val icon = if (song.isSaved) rememberVectorPainter(Icons.Default.Check) else painterResource(R.drawable.ic_save)
+            val icon = if (song.isSaved)
+                rememberVectorPainter(Icons.Default.Check)
+            else
+                painterResource(R.drawable.ic_save)
             MultiLineListItem(
                 firstLineText = "${song.artist} - ${song.name}",
                 secondLineText = "${song.size} - ${song.length}",
                 endIconButtonPainter = icon,
                 onIconButtonClick = { storageViewModel.saveSong(song) },
-                endIconButtonClickEnabled = !song.isSaved
+                endIconButtonClickEnabled = storageType == StorageType.Memory && !song.isSaved
             )
         }
     }
-}
-
-@Composable
-private fun Song() {
-
 }

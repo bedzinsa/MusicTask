@@ -1,14 +1,17 @@
 package com.arunasbedzinskas.musictask.di
 
 import androidx.room.Room
+import androidx.work.WorkManager
 import com.arunasbedzinskas.musictask.dataaccess.GenresWithSongsDataAccess
 import com.arunasbedzinskas.musictask.dataaccess.GenresWithSongsDataAccessImpl
 import com.arunasbedzinskas.musictask.database.Database
 import com.arunasbedzinskas.musictask.database.Database.Companion.DB_NAME
 import com.arunasbedzinskas.musictask.database.dao.SongDao
-import com.arunasbedzinskas.musictask.datastore.MusicDataStore
+import com.arunasbedzinskas.musictask.datastore.SongDataStore
 import com.arunasbedzinskas.musictask.dispatchers.AppDispatchers
+import com.arunasbedzinskas.musictask.main.AppObserver
 import com.arunasbedzinskas.musictask.models.enums.StorageType
+import com.arunasbedzinskas.musictask.repository.SongsRepository
 import com.arunasbedzinskas.musictask.usecase.GetAllGenresUseCase
 import com.arunasbedzinskas.musictask.usecase.GetAllGenresUseCaseImpl
 import com.arunasbedzinskas.musictask.usecase.GetAllSongsUseCase
@@ -26,6 +29,7 @@ import com.arunasbedzinskas.musictask.usecase.SaveSongToDataStoreUseCaseImpl
 import com.arunasbedzinskas.musictask.viewmodel.GenreViewModel
 import com.arunasbedzinskas.musictask.viewmodel.HomeViewModel
 import com.arunasbedzinskas.musictask.viewmodel.StorageViewModel
+import com.arunasbedzinskas.musictask.work.WorkScheduler
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidContext
@@ -39,6 +43,7 @@ object Koin {
         dataAccessModule(),
         useCaseModule(),
         databaseModule(),
+        repositoryModule(),
         viewModelsModule()
     )
 
@@ -52,13 +57,21 @@ object Koin {
         }
         single { GsonBuilder().create() }
 
-        single { MusicDataStore(get(), get()) }
+        single { WorkManager.getInstance(get()) }
+        single { WorkScheduler(get()) }
+        single { AppObserver(get()) }
+
+        single { SongDataStore(get(), get()) }
     }
 
     private fun viewModelsModule() = module {
         viewModel { HomeViewModel(get(), get(), get()) }
         viewModel { (genreId: Int) -> GenreViewModel(genreId, get(), get()) }
         viewModel { (storageType: StorageType) -> StorageViewModel(storageType, get(), get(), get())}
+    }
+
+    private fun repositoryModule() = module {
+        single { SongsRepository(get(), get()) }
     }
 
     private fun dataAccessModule() = module {
@@ -69,8 +82,8 @@ object Koin {
         factory<GetAllGenresUseCase> { GetAllGenresUseCaseImpl(get(), get()) }
         factory<GetLimitGenresUseCase> { GetLimitGenresUseCaseImpl(get()) }
         factory<GetGenreUseCase> { GetGenreUseCaseImpl(get()) }
-        factory<GetAllSongsUseCase> { GetAllSongsUseCaseImpl(get(), get(), get()) }
-        factory<GetStorageTypesDataUseCase> { GetStorageTypesDataUseCaseImpl(get()) }
+        factory<GetAllSongsUseCase> { GetAllSongsUseCaseImpl(get(), get(), get(), get()) }
+        factory<GetStorageTypesDataUseCase> { GetStorageTypesDataUseCaseImpl(get(), get()) }
         factory<MapSongUIUseCase>{ MapSongUIUseCaseImpl(get()) }
         factory<SaveSongToDataStoreUseCase> { SaveSongToDataStoreUseCaseImpl(get(), get()) }
     }

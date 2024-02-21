@@ -14,12 +14,11 @@ import com.arunasbedzinskas.musictask.models.enums.StorageType
 import com.arunasbedzinskas.musictask.ui.components.MultiLineListItem
 import com.arunasbedzinskas.musictask.viewmodel.StorageViewModel
 import org.koin.androidx.compose.koinViewModel
-import org.koin.core.parameter.parametersOf
 
 @Composable
 fun StorageScreen(
     storageType: StorageType,
-    storageViewModel: StorageViewModel = koinViewModel(parameters = { parametersOf(storageType) })
+    storageViewModel: StorageViewModel = koinViewModel()
 ) {
     val songs by storageViewModel.songsFlow.collectAsState()
 
@@ -34,6 +33,7 @@ fun StorageScreen(
                 stringResource(R.string.content_description_storage_song_saved)
             else
                 stringResource(R.string.content_description_storage_song_non_saved)
+
             MultiLineListItem(
                 firstLineText = "${song.artist} - ${song.name}",
                 secondLineText = "${song.size} - ${song.length}",

@@ -10,7 +10,6 @@ import com.arunasbedzinskas.musictask.database.dao.SongDao
 import com.arunasbedzinskas.musictask.datastore.SongDataStore
 import com.arunasbedzinskas.musictask.dispatchers.AppDispatchers
 import com.arunasbedzinskas.musictask.main.AppObserver
-import com.arunasbedzinskas.musictask.models.enums.StorageType
 import com.arunasbedzinskas.musictask.repository.SongsRepository
 import com.arunasbedzinskas.musictask.usecase.GetAllGenresUseCase
 import com.arunasbedzinskas.musictask.usecase.GetAllGenresUseCaseImpl
@@ -67,7 +66,7 @@ object Koin {
     private fun viewModelsModule() = module {
         viewModel { HomeViewModel(get(), get(), get()) }
         viewModel { (genreId: Int) -> GenreViewModel(genreId, get(), get()) }
-        viewModel { (storageType: StorageType) -> StorageViewModel(storageType, get(), get(), get())}
+        viewModel { StorageViewModel(get(), get(), get())}
     }
 
     private fun repositoryModule() = module {

@@ -14,7 +14,9 @@ internal class SaveSongToDataStoreUseCaseImpl(
 ) : SaveSongToDataStoreUseCase {
 
     override suspend fun invoke(songId: Int) {
-        val songDataModel = dataAccess.getAllSongs().first { it.id == songId }
-        songDataStore.addSong(songDataModel)
+        val songDataModel = dataAccess.getAllSongs().firstOrNull { it.id == songId }
+        songDataModel?.let {
+            songDataStore.addSong(songDataModel)
+        }
     }
 }

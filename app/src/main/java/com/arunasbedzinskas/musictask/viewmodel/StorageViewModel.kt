@@ -3,7 +3,6 @@ package com.arunasbedzinskas.musictask.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.arunasbedzinskas.musictask.dispatchers.AppDispatchers
-import com.arunasbedzinskas.musictask.models.enums.StorageType
 import com.arunasbedzinskas.musictask.models.ui.SongUIModel
 import com.arunasbedzinskas.musictask.usecase.GetAllSongsUseCase
 import com.arunasbedzinskas.musictask.usecase.SaveSongToDataStoreUseCase
@@ -16,7 +15,6 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 class StorageViewModel(
-    storageType: StorageType,
     private val getAllSongsUseCase: GetAllSongsUseCase,
     private val saveSongToDataStoreUseCase: SaveSongToDataStoreUseCase,
     private val dispatchers: AppDispatchers
